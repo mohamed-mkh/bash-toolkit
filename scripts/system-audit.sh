@@ -58,12 +58,6 @@ print_errors_in_journal() {
     journalctl --priority=err --since "24 hours ago" --no-pager
 }
 
-print_footer() {
-    echo "========================================"
-    echo "  END OF REPORT"
-    echo "========================================"
-}
-
 log_info()  { printf "[INFO]  %s\n" "$*"; }
 log_warn()  { printf "[WARN]  %s\n" "$*" >&2; }
 log_error() { printf "[ERROR] %s\n" "$*" >&2; }
@@ -98,7 +92,6 @@ main() {
     echo "========================================"
     echo "Report generated in ${duration}s"
     echo "========================================"
-    print_footer
 }
 
 main "$@"
