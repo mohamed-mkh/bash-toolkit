@@ -41,19 +41,33 @@ print_errors_in_journal() {
     journalctl | grep "ERROR" | tail -10
 }
 
+#print_footer() {
+#    echo "========================================"
+#    echo "  END OF REPORT"
+#    echo "========================================"
+#}
+
 log_info()  { printf "[INFO]  %s\n" "$*"; }
 log_warn()  { printf "[WARN]  %s\n" "$*" >&2; }
 log_error() { printf "[ERROR] %s\n" "$*" >&2; }
 
 # Main
 main() {
+    log_info "Audit started at $(date)"
     print_header
+    echo ""
     print_system_info
+    echo ""
     print_memory
+    echo ""
     print_disk_usage
+    echo ""
     print_top5_processes_by_cpu
+    echo ""
     print_top5_processes_by_ram
+    echo ""
     print_errors_in_journal
+    echo ""
 }
 
 main "$@"
