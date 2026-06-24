@@ -1,6 +1,23 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+usage() {
+    cat << EOF
+Usage: $(basename "$0") [OPTIONS]
+
+Print a system health audit report.
+
+OPTIONS:
+    -h, --help    Show this help message and exit
+
+EXAMPLES:
+    $(basename "$0")
+    $(basename "$0") > audit-$(date +%Y%m%d).log
+EOF
+}
+
+
+
 # Helper functions
 
 print_header() {
@@ -53,6 +70,12 @@ log_error() { printf "[ERROR] %s\n" "$*" >&2; }
 
 # Main
 main() {
+    case "${1:-}" in
+        -h|--help)
+            usage
+            exit 0
+            ;;
+    esac
     log_info "Audit started at $(date)"
     local start_time
     start_time=$SECONDS
