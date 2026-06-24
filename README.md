@@ -21,7 +21,7 @@ _To be added throughout the week._
 
 | Script | Description | Status |
 |--------|-------------|--------|
-| `system-audit.sh` | System health snapshot (CPU, RAM, disk, top processes) | 🚧 |
+| `system-audit.sh` | System health snapshot (CPU, RAM, disk, top processes) | ✅ |
 | `log-cleanup.sh`  | Find old log files and compress them with a report     | 🚧 |
 | `backup-rotate.sh`| Create timestamped backups with N-version retention    | 🚧 |
 | `port-scanner.sh` | Lightweight local TCP port scanner in pure Bash        | 🚧 |
@@ -40,6 +40,28 @@ git clone git@github.com:mohamed-mkh/bash-toolkit.git
 cd bash-toolkit
 ./scripts/<script-name>.sh --help
 ```
+
+## Usage examples
+
+### system-audit.sh
+
+Generate a complete system health report:
+
+\`\`\`bash
+./scripts/system-audit.sh
+\`\`\`
+
+Save the report to a timestamped file:
+
+\`\`\`bash
+./scripts/system-audit.sh > "audit-$(date +%Y%m%d-%H%M%S).log"
+\`\`\`
+
+Show usage:
+
+\`\`\`bash
+./scripts/system-audit.sh --help
+\`\`\`
 
 ## Development
 
