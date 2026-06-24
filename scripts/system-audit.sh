@@ -41,11 +41,11 @@ print_errors_in_journal() {
     journalctl | grep "ERROR" | tail -10
 }
 
-#print_footer() {
-#    echo "========================================"
-#    echo "  END OF REPORT"
-#    echo "========================================"
-#}
+print_footer() {
+    echo "========================================"
+    echo "  END OF REPORT"
+    echo "========================================"
+}
 
 log_info()  { printf "[INFO]  %s\n" "$*"; }
 log_warn()  { printf "[WARN]  %s\n" "$*" >&2; }
@@ -54,6 +54,9 @@ log_error() { printf "[ERROR] %s\n" "$*" >&2; }
 # Main
 main() {
     log_info "Audit started at $(date)"
+    local start_time
+    start_time=$SECONDS
+
     print_header
     echo ""
     print_system_info
@@ -68,6 +71,11 @@ main() {
     echo ""
     print_errors_in_journal
     echo ""
+    local duration=$((SECONDS - start_time))
+    echo "========================================"
+    echo "Report generated in ${duration}s"
+    echo "========================================"
+    print_footer
 }
 
 main "$@"
