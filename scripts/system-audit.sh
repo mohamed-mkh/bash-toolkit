@@ -38,7 +38,7 @@ print_top5_processes_by_ram() {
 
 print_errors_in_journal() {
     echo "--- Recent errors in journal (last 10) ---"
-    journalctl | grep "ERROR" | tail -10
+    journalctl --priority=err --since "24 hours ago" --no-pager
 }
 
 print_footer() {
